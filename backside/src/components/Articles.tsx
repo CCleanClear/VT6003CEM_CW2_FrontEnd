@@ -40,9 +40,9 @@ const Article = () => {
       return(<>
         <Row gutter={[16,16]} style={{marginLeft:"15px"}}>
           {
-            articles && articles.map(({id, title, imageurl, links})=> (
+            articles && articles.map(({id, dogname, imageurl, links})=> (
             <Col key={id}>                                          
-             <Card title={title} style={{width: 300}}
+             <Card title={dogname} style={{width: 300}}
                    cover={<img alt="example" src={imageurl} />} hoverable
                    actions={[
                     <PostIcon type="like" countLink={links.likes} id={id} />,

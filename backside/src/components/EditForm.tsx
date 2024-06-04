@@ -22,21 +22,23 @@ const EditForm: React.FC = (props:any) => {
       ]
       
       const handleFormSubmit  = (values: any) => {
-        const t = values.title;
-        const a = values.alltext;
+        const t = values.dogname;
+        const a = values.breed;
         const s = values.summary;
         const d = values.description;
         const u = values.imageurl;
+        const l = values.location;
         const currentUser = getCurrentUser();
        
        // console.log('new article '+ t,a,s,d,u,currentUser.id);
         const postArticle = {
-          title: t,
-          alltext: a,
+          dogname: t,
+          breed: a,
           summary:s,
           description:d,
+          location: l,
           imageurl:u,
-          authorid: currentUser.id
+          writerid: currentUser.id
         }
        
         if(props.isNew==false){
@@ -76,17 +78,20 @@ const EditForm: React.FC = (props:any) => {
     <p></p>
     {props.isNew?(<Title level={3} style={{color:"#0032b3"}}>Create New Article</Title>):(<Title level={3} style={{color:"#0032b3"}}>Update Article</Title>)}
     <Form name="article" onFinish={(values)=>handleFormSubmit(values)}>
-      <Form.Item name="title" label="Title" rules={contentRules}>
+      <Form.Item name="dogname" label="Name" rules={contentRules}>
       {props.isNew? ( <Input  />):( <Input defaultValue={!props.isNew&&aa.title} />)}
       </Form.Item>
-      <Form.Item name="alltext" label="About me" rules={contentRules}>
+      <Form.Item name="breed" label="Breed" rules={contentRules}>
       {props.isNew? ( <TextArea rows={2}  />):( <TextArea rows={2} defaultValue={!props.isNew&&aa.alltext} />)}       
       </Form.Item>
-      <Form.Item name="summary" label="Summary" >
+      <Form.Item name="summary" label="Dog Summary" >
       {props.isNew? ( <TextArea rows={2}  />):( <TextArea rows={2} defaultValue={!props.isNew&&aa.summary} />)}
       </Form.Item>
-      <Form.Item name="description" label="Detail Description" >
+      <Form.Item name="description" label="Detail Dog Description" >
       {props.isNew? ( <TextArea rows={2}  />):( <TextArea rows={2} defaultValue={!props.isNew&&aa.description} />)}
+      </Form.Item>
+      <Form.Item name="location" label="Location" >
+      {props.isNew? ( <Input  />):( <Input defaultValue={!props.isNew&&aa.imageurl} />)}  
       </Form.Item>
       <Form.Item name="imageurl" label="ImageURL" >
       {props.isNew? ( <Input  />):( <Input defaultValue={!props.isNew&&aa.imageurl} />)}  
