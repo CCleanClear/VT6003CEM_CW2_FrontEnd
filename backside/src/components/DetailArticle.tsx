@@ -13,14 +13,14 @@ import { getCurrentUser } from "../services/auth.service";
 const DetailArticle = () => {
 const currentUser = getCurrentUser();
 const { aid } = useParams();
-const [article, setArticle] = React.useState({id:0, title:'', alltext:'', summary:'',imageurl:'', authorid:0, description:""}); 
+const [dog, setArticle] = React.useState({id:0, dogname:'', breed:'', summary:'',imageurl:'',  locationid:1, writerid:0, description: ''}); 
 const navigate= useNavigate();
 const [loading, setLoading] = React.useState(true);
 const [theme, setTheme] = React.useState('outlined');
 
 React.useEffect(() => {
-  console.log(`path: ${api.uri}/articles/${aid}`)
-    axios.get(`${api.uri}/articles/${aid}`)
+  console.log(`path: ${api.uri}/dogs/${aid}`)
+    axios.get(`${api.uri}/dogs/${aid}`)
       .then((res) => {
       //  console.log('article' ,article)
         setArticle(res.data);
@@ -30,7 +30,7 @@ React.useEffect(() => {
         setLoading(false);
       })  
       .catch((error) => {
-        console.log('Error fetching article details ')
+        console.log('Error fetching dog details ')
        // console.error('Error fetching article details:', error);
       });
   }, [aid]);
@@ -51,7 +51,7 @@ React.useEffect(() => {
     setTheme('filled')
 // console.log('fav link arr ', fav.links.fav)
 // console.log('fav link ', fav)
-  axios.delete(`${api.uri}/articles/${aid}`, {
+  axios.delete(`${api.uri}/dogs/${aid}`, {
        
         headers: {
             "Authorization": `Basic ${localStorage.getItem('aToken')}`
@@ -61,7 +61,7 @@ React.useEffect(() => {
       .then((results) =>{ console.log('respone ',JSON.stringify(results.data.message))
         if(results.data.message==="removed")
       {  
-          alert("This article is removed from the blog list")
+          alert("This dog is removed from the blog list")
           navigate("/");
           window.location.reload();}
         
@@ -85,20 +85,21 @@ else {
       <h2 style={{ color: 'black' }}> Welcome to Blog Dashboard</h2>   
       
             <Col  span={24} >                                   
-             <Card title={article.title} style={{width: 300,marginLeft:"100px"}}
-                   cover={<img alt="put image here" src={article.imageurl} />} hoverable
+             <Card title={dog.dogname} style={{width: 300,marginLeft:"100px"}}
+                   cover={<img alt="put image here" src={dog.imageurl} />} hoverable
                   
                    actions={[
-                    (currentUser&&currentUser.role==="admin"&&currentUser.id===article.authorid)&&<EditForm  isNew={false} aid={aid}/>,  
-                    (currentUser&&currentUser.role==="admin"&&currentUser.id===article.authorid)&& <Icon  style={{ fontSize: '32px', }} onClick={()=>handleDelete()}/>
+                    (currentUser&&currentUser.role==="admin"&&currentUser.id===dog.writerid)&&<EditForm  isNew={false} aid={aid}/>,  
+                    (currentUser&&currentUser.role==="admin"&&currentUser.id===dog.writerid)&& <Icon  style={{ fontSize: '32px', }} onClick={()=>handleDelete()}/>
                   ]} 
                    >               
                   <div> <h3>About me</h3>
-                   <p>{article.breed}</p>
+                   <p>{dog.breed}</p>
                    <h3>Summary</h3>
-                   <p>{article.summary}</p>
+                   <p>{dog.summary}</p>
                    <h3>Detail Description</h3>
-                   <p> {article.description}</p>
+                   <p> {dog.description}</p>
+                   <p>Location: {dog.locationid} of The Canine Shelter</p>
                    <Button  
         type="primary"
         icon={<RollbackOutlined />}

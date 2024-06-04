@@ -23,27 +23,27 @@ const EditForm: React.FC = (props:any) => {
       
       const handleFormSubmit  = (values: any) => {
         const t = values.dogname;
-        const a = values.breed;
+        const b = values.breed;
         const s = values.summary;
         const d = values.description;
         const u = values.imageurl;
-        const l = values.location;
+        const l = values.locationid;
         const currentUser = getCurrentUser();
        
        // console.log('new article '+ t,a,s,d,u,currentUser.id);
         const postArticle = {
           dogname: t,
-          breed: a,
+          breed: b,
           summary:s,
           description:d,
-          location: l,
+          locationid: l,
           imageurl:u,
           writerid: currentUser.id
         }
        
         if(props.isNew==false){
-       console.log(`path: ${api.uri}/articles${props.aid}`)
-        axios.put(`${api.uri}/articles/${props.aid}`, postArticle, {
+       console.log(`path: ${api.uri}/dogs${props.aid}`)
+        axios.put(`${api.uri}/dogs/${props.aid}`, postArticle, {
             headers: {
               'Authorization': `Basic ${localStorage.getItem('aToken')}`
             }
@@ -57,14 +57,14 @@ const EditForm: React.FC = (props:any) => {
         });
       }
        else
-       {console.log(`path: ${api.uri}/articles`)
-        axios.post(`${api.uri}/articles`, postArticle, {
+       {console.log(`path: ${api.uri}/dogs`)
+        axios.post(`${api.uri}/dogs`, postArticle, {
         headers: {
           'Authorization': `Basic ${localStorage.getItem('aToken')}`
         }
       })
         .then((res)=> {
-        alert("New Article created")
+        alert("New Dog record created")
         console.log(res.data);
          navigate("/");
         window.location.reload();
@@ -77,12 +77,12 @@ const EditForm: React.FC = (props:any) => {
       <Modal open={isShow} onCancel={()=>{setIsShow(false)}} title="Welcome Blogger" footer={[]}> 
     <p></p>
     {props.isNew?(<Title level={3} style={{color:"#0032b3"}}>Create New Article</Title>):(<Title level={3} style={{color:"#0032b3"}}>Update Article</Title>)}
-    <Form name="article" onFinish={(values)=>handleFormSubmit(values)}>
+    <Form name="dog" onFinish={(values)=>handleFormSubmit(values)}>
       <Form.Item name="dogname" label="Name" rules={contentRules}>
-      {props.isNew? ( <Input  />):( <Input defaultValue={!props.isNew&&aa.title} />)}
+      {props.isNew? ( <Input  />):( <Input defaultValue={!props.isNew&&aa.dogname} />)}
       </Form.Item>
       <Form.Item name="breed" label="Breed" rules={contentRules}>
-      {props.isNew? ( <TextArea rows={2}  />):( <TextArea rows={2} defaultValue={!props.isNew&&aa.alltext} />)}       
+      {props.isNew? ( <Input  />):( <Input  defaultValue={!props.isNew&&aa.breed} />)}       
       </Form.Item>
       <Form.Item name="summary" label="Dog Summary" >
       {props.isNew? ( <TextArea rows={2}  />):( <TextArea rows={2} defaultValue={!props.isNew&&aa.summary} />)}
@@ -90,8 +90,8 @@ const EditForm: React.FC = (props:any) => {
       <Form.Item name="description" label="Detail Dog Description" >
       {props.isNew? ( <TextArea rows={2}  />):( <TextArea rows={2} defaultValue={!props.isNew&&aa.description} />)}
       </Form.Item>
-      <Form.Item name="location" label="Location" >
-      {props.isNew? ( <Input  />):( <Input defaultValue={!props.isNew&&aa.imageurl} />)}  
+      <Form.Item name="locationid" label="Location" >
+      {props.isNew? ( <Input  />):( <Input defaultValue={!props.isNew&&aa.locationid} />)}  
       </Form.Item>
       <Form.Item name="imageurl" label="ImageURL" >
       {props.isNew? ( <Input  />):( <Input defaultValue={!props.isNew&&aa.imageurl} />)}  
