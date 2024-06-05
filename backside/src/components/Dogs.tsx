@@ -11,13 +11,13 @@ import Displaycomment from './comments';
 
 
 
-const Article = () => {
-  const [articles, setArticles] = React.useState(null);  
+const Dog = () => {
+  const [doges, setDoges] = React.useState(null);  
   const [loading, setLoading] = React.useState(true);    
   React.useEffect(()=>{
-    axios.get(`${api.uri}/articles`)
+    axios.get(`${api.uri}/dogs`)
       .then((res)=>{
-        setArticles(res.data);   
+        setDoges(res.data);   
         localStorage.setItem('a',JSON.stringify(res.data))                        
       })
       .then(()=>{
@@ -32,7 +32,7 @@ const Article = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48}} spin />
     return(<Spin indicator={antIcon} />);
   } else {
-    if(!articles){
+    if(!doges){
       return(<div>There is no article available now.</div>)
     } else {
        
@@ -40,9 +40,10 @@ const Article = () => {
       return(<>
         <Row gutter={[16,16]} style={{marginLeft:"15px"}}>
           {
-            articles && articles.map(({id, dogname, imageurl, links})=> (
+            doges && doges.map(({id, dogname, breed, imageurl, links})=> (
             <Col key={id}>                                          
              <Card title={dogname} style={{width: 300}}
+                   
                    cover={<img alt="example" src={imageurl} />} hoverable
                    actions={[
                     <PostIcon type="like" countLink={links.likes} id={id} />,
@@ -50,7 +51,8 @@ const Article = () => {
                     <PostIcon type="heart" FavLink={links.fav} id={id}/>
                   
                   ]} 
-                   >               
+                   > 
+                   <p>{breed}</p>              
                   <Link to= {`/${id}`}>Details</Link>
                  
                 </Card>
@@ -65,4 +67,4 @@ const Article = () => {
 }
 
 
-export default Article;
+export default Dog;
