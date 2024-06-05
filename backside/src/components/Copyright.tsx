@@ -5,7 +5,7 @@ const { Text } = Typography;
 const Copyright = () => {
     return (
         <>
-            <Text>(c) 2024 Web API Development of demonstration ONLY</Text>
+            <Text>(c) Web API CW2 - Chan Tsz Yu (237025296)</Text>
         </>
     )
 }

@@ -16,47 +16,48 @@ const { Title } = Typography;
 function SearchDog() {
  let navigate: NavigateFunction = useNavigate();
  const [press, setPress] = useState("");
- const [usersData, setUsers] = useState([]);
+ const [DogData, setDogs] = useState([]);
  const[isSearchOK,setSearch]=useState(false);
  
 
+
 const onSearch= async (value:any) => {
-  console.log("value ",value)
-  console.log("press ",`${press}`)
- let urlPath=`${api.uri}/users`;
- if (press==="email"||press==="username") 
-   urlPath+=`/?fields=${press}&q=${value}`
- else
-  if(press==="username&fields=email"&&value==="")
-     urlPath+=`/?fields=${press}`
- 
-  console.log("urlPath ",urlPath)
- 
-  console.log("aToken ",localStorage.getItem('aToken'))
-  return(await axios.get(`${urlPath}`,{
-    method: "GET",
-    headers:{"Authorization": `Basic ${localStorage.getItem('aToken')}`}
-})
-  .then(data => { 
-   console.log("user return  ",JSON.stringify(data) );
-   console.log("user data  ",data );
-   if(!data.data.length||data.data.length==0)
-     {alert("No data found")
-      navigate("/profile");
-      window.location.reload();
-     }
-   setUsers(data.data);
-   setSearch(true); 
-    value="";
-  })
-  .catch(err => console.log("Error fetching users", err)) 
-  ) 
+    console.log("value ", value);
+    console.log("press ", `${press}`);
+    let urlPath = `${api.uri}/dogs/search`;
+  
+    if (press === "breed" || press === "dogname") {
+      urlPath += `/?fields=${press}&q=${value}`;
+    } else if (press === "dogname&fields=breed" && value === "") {
+      urlPath += `/?fields=${press}`;
+    }
+  
+    console.log("urlPath ", urlPath);
+  
+    try {
+      const response = await axios.get(urlPath);
+  
+      console.log("dog return ", JSON.stringify(response.data));
+      console.log("dog data ", response.data);
+  
+      if (!response.data.length || response.data.length === 0) {
+        alert("No data found");
+       // navigate("/profile");
+        window.location.reload();
+      }
+  
+      setDogs(response.data);
+      setSearch(true);
+      value = "";
+    } catch (err) {
+      console.log("Error fetching dogs", err);
+    }
 }
 
 const { Option } = Select;
 
 function handleChange(value:any)  {
-  message.info("Pls. enter at least three characters to search by email or username otherwise leave the input empty")
+  message.info("Pls. enter at least three characters to search by dogname or breed otherwise leave the input empty")
   
   setPress(value);
   console.log(`selected ${value}`);
@@ -66,24 +67,23 @@ function handleChange(value:any)  {
   return (
    <>
      <Col span={16}> 
-       <Title level={3} style={{color:"#0032b3"}}>Blog Staff Admin</Title>
-        <Title level={5}>Manage User Info</Title>            
-       <Search placeholder="Search Users"
+        <Title level={5}>Search Dog Info</Title>            
+       <Search placeholder="Search Dog"
             allowClear
             enterButton="Search"
             size="large"
             onSearch={onSearch}/>
        <Select defaultValue="all" style={{ width: 280, marginRight:'200px' }} onChange={handleChange}>
-        <Option value="username">username</Option>
-        <Option value="email">email</Option>
-        <Option value="username&fields=email">Get all-filter by username & email</Option>
+        <Option value="dogname">dogname</Option>
+        <Option value="breed">breed</Option>
+        <Option value="dogname&fields=breed">Get all-filter by username & email</Option>
         <Option value="all">Get all-without filter</Option>
         </Select>	      
-  {isSearchOK&&<Table dataSource={usersData}>
+  {isSearchOK&&<Table dataSource={DogData}>
    <Column title="ID" dataIndex="id" key="id" />
-   <Column title="Username" dataIndex="username" key="username" />
-   <Column title="email" dataIndex="email" key="email" />
-   <Column title="Role" dataIndex="role" key="role" /> 
+   <Column title="Dogname" dataIndex="dogname" key="dogname" />
+   <Column title="breed" dataIndex="breed" key="breed" />
+   <Column title="Summary" dataIndex="summary" key="summary" /> 
    </Table>}
    </Col>  
 

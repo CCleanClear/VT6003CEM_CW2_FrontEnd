@@ -49,7 +49,7 @@ const EditForm: React.FC = (props:any) => {
             }
           })
             .then((res)=> {
-            alert("Article updated")
+            alert("Dog record updated")
             console.log(res.data);
             localStorage.removeItem("e");
              navigate("/");

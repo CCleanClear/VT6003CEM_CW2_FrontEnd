@@ -82,9 +82,9 @@ class ImageUpload extends React.Component {
     return (
       <><div>
         <p></p>
-        <Title level={3}  style={{color:"#0032b3"}}>Select and Upload Pet Image</Title>
+        <Title level={3}  style={{color:"	#CD5C5C"}}>Select and Upload Dog's Image</Title>
         <Upload {...props}>
-          <Button icon={<UploadOutlined />}>Select File</Button>
+          <Button icon={<UploadOutlined />}>Select Image File</Button>
         </Upload>
         <Button
           type="primary"

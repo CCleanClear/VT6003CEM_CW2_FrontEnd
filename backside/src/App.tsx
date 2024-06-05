@@ -15,7 +15,7 @@ import About from './components/About';
 import DetailArticle from './components/DetailArticle';
 import Profile from './components/Profile';
 import FavPage from './components/favpage';
-import { LogoutOutlined, HomeOutlined,DashboardOutlined,InfoCircleOutlined,HeartFilled } from '@ant-design/icons';
+import { LogoutOutlined, HomeOutlined,DashboardOutlined,InfoCircleOutlined,HeartFilled, HeartTwoTone, HomeTwoTone, DashboardTwoTone, InfoCircleTwoTone } from '@ant-design/icons';
 import Copyright from './components/Copyright';
 
 const { Header, Content, Footer } = Layout;
@@ -48,16 +48,22 @@ export default function App() {
       <Header>              
         <nav style={{float:'left'}}>  
           <div> <Space> 
-            <Link to={"/"} >
-            <img
-              src="/src/assets/small_Coventry_University.png"
+
+          <Link to={"/"} >
+          <img
+              src="/src/assets/pawprint.png"
               alt="profile-img"
               className="profile-img-card"
+              width={30}
             />
+            </Link>
+            <Link to={"/"} >
+
+            <h2 style={{color: "white"}}>The Canine Shelter</h2>
             </Link>   
-          <Link to="/"><HomeOutlined style={{ fontSize: '32px', }} /></Link>
-            <Link to="/dashboard"><DashboardOutlined style={{ fontSize: '32px', }}/></Link>
-          <Link to="/about"><InfoCircleOutlined style={{ fontSize: '32px', }}/></Link>
+          <Link to="/" ><HomeTwoTone style={{ fontSize: '32px', color: "white"}} /></Link>
+            <Link to="/dashboard"><DashboardTwoTone style={{ fontSize: '32px', color: "white"}}/></Link>
+          <Link to="/about"><InfoCircleTwoTone style={{ fontSize: '32px',color: "white" }}/></Link>
           
           </Space></div>
         </nav>
@@ -66,11 +72,11 @@ export default function App() {
             {currentUser ? (
               <div>  <Space>   
                   
-                  <Link to={"/profile"} >
-                    {currentUser.username }
+                  <Link to={"/profile"} style={{color: "white", fontSize: 20}}>
+                   {currentUser.username }
                   </Link>  
-                  <Link to="/favpage"><HeartFilled style={{ fontSize: '32px', }}/></Link>                           
-                  <a href="/" className="nav-link" onClick={logOut}> <LogoutOutlined style={{ fontSize: '32px', }} /></a>               
+                  <Link to="/favpage"><HeartTwoTone style={{ fontSize: '32px',color: "white" }}/></Link>                           
+                  <a href="/" className="nav-link" onClick={logOut}> <LogoutOutlined style={{ fontSize: '32px', color: "white"}} /></a>               
                </Space></div>
             ) : (
               <div><Space> 
@@ -94,11 +100,11 @@ export default function App() {
       </Content>
       <Footer>
         <Copyright /><img
-              src="/src/assets/SHAPE_logo.png"
+              src="/src/assets/pawprint.png"
               alt="profile-img"
               className="profile-img-card"
-              style={{float:'right'}}
-            />
+              width={40}            />
+
       </Footer>
       <FloatButton.BackTop  />
       </Layout>
