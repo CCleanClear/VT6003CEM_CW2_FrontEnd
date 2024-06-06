@@ -5,7 +5,7 @@ import FavCard from './FavCard'
 function FavPage() {
   return (
     <> 
-    <h2 style={{ color: 'green' }}> Welcome to Blog client Demo</h2>     
+    <h2 style={{ color: '#CD5C5C' }}> <strong>Favourites Dog</strong></h2>     
      
       <FavCard />
     </>

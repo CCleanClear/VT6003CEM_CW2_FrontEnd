@@ -2,7 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { LikeOutlined,LikeFilled,HeartOutlined,HeartFilled} from '@ant-design/icons';
 import { getCurrentUser } from "../services/auth.service";
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { useParams, NavigateFunction, useNavigate } from 'react-router-dom';
+import { api } from './common/http-common';
+
 
 function getIcon (theme:any, iconType:any) {
   let Icon:any;
@@ -25,6 +27,7 @@ function getIcon (theme:any, iconType:any) {
 }
 
   const  PostIcon = (props:any) =>{
+  const { aid } = useParams();
   const [selected, setSelected] = React.useState(false);
   const [count, setCount] = React.useState(0);
   const theme = selected ? 'filled' : 'outlined'; 
@@ -68,7 +71,23 @@ function getIcon (theme:any, iconType:any) {
                 window.location.reload();
               }
                else{
-                alert("you have post like already")
+                axios.delete(props.countLink,{
+                  headers: {
+                    'Authorization': `Basic ${localStorage.getItem('aToken')}`
+                  }
+                })
+
+                .then(responsejson => {
+                  console.log('responsejson.data ',responsejson.data)
+                  if(responsejson.data.userid&&responsejson.data.message==="liked")
+                {   alert ("Dislike");
+                    window.location.reload;
+                } else {
+                  alert("Post like deleted")
+                  window.location.reload;
+                }
+                })
+                //alert("you have post like already")
               //  console.log('responsejson.data.message ',responsejson.data.message)
                }
             })

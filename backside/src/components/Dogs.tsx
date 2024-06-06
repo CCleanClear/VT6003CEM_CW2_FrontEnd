@@ -33,7 +33,7 @@ const Dog = () => {
     return(<Spin indicator={antIcon} />);
   } else {
     if(!doges){
-      return(<div>There is no article available now.</div>)
+      return(<div>There is no dog record available now.</div>)
     } else {
        
     

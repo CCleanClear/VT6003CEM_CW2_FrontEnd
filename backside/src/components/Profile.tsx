@@ -16,8 +16,8 @@ console.log('current user' + JSON.stringify(currentUser))
   return (
     <>
      <p></p>
-        <h2 style={{color:"black",marginLeft:"15px"}}>
-          <strong>{currentUser.username}</strong> Profile
+        <h2 style={{color:"#CD5C5C",marginLeft:"15px"}}>
+          <strong>{currentUser.username} Profile</strong> 
         </h2>
          
       
