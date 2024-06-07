@@ -68,7 +68,13 @@ console.log('current user' + JSON.stringify(currentUser))
       <Col span={18}>
         
         <div style={{marginLeft:"15px",marginBottom:"15px"}}>
-        { currentUser.role=="admin"&&  <EditForm  isNew={true} />}<h3> Create New Dog Record</h3></div>
+        {currentUser.role === "admin" && (
+        <>
+        <EditForm isNew={true} />
+        <h2 style={{color: "#CD5C5C"}}><strong>Create Dog record</strong></h2>
+        </>
+)}
+      </div>
       </Col>    
       </Row>
         

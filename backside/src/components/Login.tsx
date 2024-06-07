@@ -4,6 +4,8 @@ import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Checkbox, Modal} from 'antd';
 import { LoginOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
 import { login } from "../services/auth.service";
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
 
   const Login: React.FC = () => {
     let navigate: NavigateFunction = useNavigate();
@@ -49,7 +51,7 @@ import { login } from "../services/auth.service";
   return (
     <>
       <Button icon={<LoginOutlined />} onClick={()=>{setIsShow(true)}} />
-      <Modal open={isShow} onCancel={()=>{setIsShow(false)}} title="Welcome Blogger" footer={[]}> 
+      <Modal open={isShow} onCancel={()=>{setIsShow(false)}} title="Welcome Charitable" footer={[]}> 
     <Form style={{margin: "5px"}} 
       name="normal_login"
       layout="vertical"
@@ -105,6 +107,17 @@ import { login } from "../services/auth.service";
         Or <a href="/register">register now!</a>
       </Form.Item>
     </Form>
+    <GoogleLogin
+        onSuccess={credentialResponse => {
+          const credentialResponseDecoded = jwtDecode(credentialResponse.credential);
+          console.log(credentialResponseDecoded);
+          navigate("/");
+          window.location.reload();
+        }}
+        onError={() => {
+          console.log('Login Failed');
+        }}
+      />
         </Modal>
     </>  
   );

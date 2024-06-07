@@ -73,10 +73,11 @@ const EditForm: React.FC = (props:any) => {
     }
   return (
     <>
+     
       <Button icon={<EditOutlined />} onClick={()=>{setIsShow(true)}} />
       <Modal open={isShow} onCancel={()=>{setIsShow(false)}} title="Welcome Blogger" footer={[]}> 
     <p></p>
-    {props.isNew?(<Title level={3} style={{color:"#0032b3"}}>Create New Article</Title>):(<Title level={3} style={{color:"#0032b3"}}>Update Article</Title>)}
+    {props.isNew?(<Title level={3} style={{color:"#CD5C5C"}}>Create Dog Record</Title>):(<Title level={3} style={{color:"#CD5C5C"}}>Update Dog Record</Title>)}
     <Form name="dog" onFinish={(values)=>handleFormSubmit(values)}>
       <Form.Item name="dogname" label="Name" rules={contentRules}>
       {props.isNew? ( <Input  />):( <Input defaultValue={!props.isNew&&aa.dogname} />)}
