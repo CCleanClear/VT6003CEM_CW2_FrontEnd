@@ -1,4 +1,3 @@
-
 import { Button,  List, Tooltip, Space, Input, Modal, Flex } from  'antd';
 import { Comment } from '@ant-design/compatible';
 import { DeleteOutlined, DeleteFilled, MessageOutlined, } from '@ant-design/icons';
@@ -9,7 +8,7 @@ import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 
 const DisplayComment = (props:any) => {    
-const [article_comments, setComments] = React.useState<any>([]);
+const [dog_comments, setComments] = React.useState<any>([]);
 const [isShow, setIsShow] = React.useState(false); 
 const currentUser = getCurrentUser();
 const navigate: NavigateFunction = useNavigate();
@@ -27,7 +26,7 @@ if(currentUser){
   axios.get(props.msgLink)
     .then((res)=>{
       setComments(res.data);  
-      console.log('no of msg ',article_comments.length)                    
+      console.log('no of msg ',dog_comments.length)                    
     }) 
     .catch(err => {
       console.log(`icon error for msg  `)
@@ -84,7 +83,7 @@ Icon=DeleteFilled;
         console.log('respone ',JSON.stringify(response.data.message))
         if(response.data.message==="removed")
       {     
-          alert("This article commentis removed by admin")
+          alert("This comment removed by admin")
           navigate("/");
           window.location.reload();}       
       })
@@ -105,7 +104,7 @@ Icon=DeleteFilled;
   <List   
     className="comment-list"
     itemLayout="horizontal"
-    dataSource={article_comments}
+    dataSource={dog_comments}
     renderItem={(item:any) => (
     <Flex gap="middle" align='center'  justify = 'flex-start' >
      <li> 
