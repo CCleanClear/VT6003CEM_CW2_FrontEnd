@@ -6,6 +6,7 @@ interface Props {
 
 const Search: React.FC<Props> = ({ getDogPics }) => {
   const [breedList, setBreedList] = useState<string[]>([]);
+  const [selectedBreed, setSelectedBreed] = useState<string>('');
 
   useEffect(() => {
     getBreedList();
@@ -22,12 +23,18 @@ const Search: React.FC<Props> = ({ getDogPics }) => {
     }
   }
 
+  const handleBreedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = e.target.value;
+    setSelectedBreed(selectedValue);
+    getDogPics(selectedValue);
+  };
+
   return (
     <div>
-       <h2 style={{color:"#CD5C5C",marginLeft:"15px"}}>
-        Choose a breed to confirm paired dog breeds
-        </h2>
-      <select name="breedList" onChange={(e) => getDogPics(e.target.value)}>
+      <h2 style={{ color: "#CD5C5C", marginLeft: "15px" }}>
+      Info of Dog Breed: <strong>{selectedBreed}</strong>
+      </h2>
+      <select name="breedList" onChange={handleBreedChange}>
         <option value="">Select a breed</option>
         {breedList.map((breed) => (
           <option value={breed} key={breed}>
