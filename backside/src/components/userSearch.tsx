@@ -24,7 +24,7 @@ const onSearch= async (value:any) => {
   console.log("value ",value)
   console.log("press ",`${press}`)
  let urlPath=`${api.uri}/users`;
- if (press==="email"||press==="username") 
+ if (press==="email"||press==="username"||press==="role") 
    urlPath+=`/?fields=${press}&q=${value}`
  else
   if(press==="username&fields=email"&&value==="")
@@ -76,6 +76,7 @@ function handleChange(value:any)  {
        <Select defaultValue="all" style={{ width: 280, marginRight:'200px' }} onChange={handleChange}>
         <Option value="username">username</Option>
         <Option value="email">email</Option>
+        <Option value="role">role</Option>
         <Option value="username&fields=email">Get all-filter by username & email</Option>
         <Option value="all">Get all-without filter</Option>
         </Select>	      
