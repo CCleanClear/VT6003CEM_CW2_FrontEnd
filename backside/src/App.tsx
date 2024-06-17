@@ -15,7 +15,7 @@ import About from './components/About';
 import DetailArticle from './components/DetailArticle';
 import Profile from './components/Profile';
 import FavPage from './components/favpage';
-import { LogoutOutlined, HomeOutlined, DashboardOutlined, InfoCircleOutlined, HeartFilled, HeartTwoTone, HomeTwoTone, DashboardTwoTone, InfoCircleTwoTone, SearchOutlined, PictureTwoTone } from '@ant-design/icons';
+import { LogoutOutlined, HomeOutlined, DashboardOutlined, InfoCircleOutlined, HeartFilled, HeartTwoTone, HomeTwoTone, DashboardTwoTone, InfoCircleTwoTone, SearchOutlined, PictureTwoTone, EnvironmentTwoTone } from '@ant-design/icons';
 import Copyright from './components/Copyright';
 import Breed from './components/Breed';
 
@@ -63,7 +63,7 @@ export default function App() {
                 <h2 style={{ color: "white" }}>The Canine Shelter</h2>
               </Link>
               <Link to="/" ><HomeTwoTone style={{ fontSize: '32px', color: "white" }} /></Link>
-              <Link to="/dashboard"><DashboardTwoTone style={{ fontSize: '32px', color: "white" }} /></Link>
+              <Link to="/dashboard"><EnvironmentTwoTone style={{ fontSize: '32px', color: "white" }} /></Link>
               <Link to="/about"><InfoCircleTwoTone style={{ fontSize: '32px', color: "white" }} /></Link>
               {currentUser?.role === 'admin' && (
                 <Link to="/breed">

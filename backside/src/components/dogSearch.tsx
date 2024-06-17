@@ -76,7 +76,7 @@ function handleChange(value:any)  {
        <Select defaultValue="all" style={{ width: 280, marginRight:'200px' }} onChange={handleChange}>
         <Option value="dogname">dogname</Option>
         <Option value="breed">breed</Option>
-        <Option value="dogname&fields=breed">Get all-filter by username & email</Option>
+        <Option value="dogname&fields=breed">Get all-filter by dogname & breed</Option>
         <Option value="all">Get all-without filter</Option>
         </Select>	      
   {isSearchOK&&<Table dataSource={DogData}>

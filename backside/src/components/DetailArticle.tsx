@@ -93,13 +93,13 @@ else {
                     (currentUser&&currentUser.role==="admin"&&currentUser.id===dog.writerid)&& <Icon  style={{ fontSize: '32px', }} onClick={()=>handleDelete()}/>
                   ]} 
                    >               
-                  <div> <h3>About me</h3>
+                  <div> <h3>Breed</h3>
                    <p>{dog.breed}</p>
                    <h3>Summary</h3>
                    <p>{dog.summary}</p>
                    <h3>Detail Description</h3>
                    <p> {dog.description}</p>
-                   <p>Location: {dog.locationid} of The Canine Shelter</p>
+                   <p><strong>Location:</strong> {dog.locationid} of The Canine Shelter</p>
                    <Button  
         type="primary"
         icon={<RollbackOutlined />}
