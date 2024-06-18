@@ -66,7 +66,7 @@ function handleChange(value:any)  {
   return (
    <>
      <Col span={16}> 
-       <Title level={3} style={{color:"	#CD5C5C"}}> Staff Admin</Title>
+       <Title level={3} style={{color:"	#CD5C5C"}}> Charity Worker Info</Title>
         <Title level={5}>Manage User Account</Title>            
        <Search placeholder="Search Users"
             allowClear

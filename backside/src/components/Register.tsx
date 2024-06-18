@@ -43,7 +43,7 @@ const Register: React.FC = () => {
   return (
     
          <>
-           <h3> <strong>Welcome to Blog Registration</strong></h3>
+           <h2  style={{ color: "	#CD5C5C"}}> <strong>Welcome to website Registration</strong></h2>
              <Form style={{margin: "5px",width:"900px"}} 
   layout="vertical"             name="normal_register"
                className="register-form"

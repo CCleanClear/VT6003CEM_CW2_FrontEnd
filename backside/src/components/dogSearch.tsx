@@ -66,7 +66,7 @@ function handleChange(value:any)  {
 
   return (
    <>
-     <Col span={16}> 
+     <Col span={10}> 
         <Title level={5}>Search Dog Info</Title>            
        <Search placeholder="Search Dog"
             allowClear
